@@ -233,7 +233,7 @@ $emergencia = fetchOne("SELECT * FROM contactos_emergencia WHERE estudiante_id =
             </tr>
             <tr>
                 <th>Esquema de Vacunas</th>
-                <td><?php echo $salud['tiene_carnet_vacunacion'] ? 'COMPLETO' : 'INCOMPLETO'; ?></td>
+                <td><?php echo ($salud['esquema_vacunas'] ?? 'INCOMPLETO') == 'COMPLETO' ? 'COMPLETO' : 'INCOMPLETO'; ?></td>
             </tr>
             <tr>
                 <th>Dosis COVID-19</th>
