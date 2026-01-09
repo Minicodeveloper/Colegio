@@ -193,7 +193,25 @@ $data = $_SESSION['nueva_matricula'];
                         }
                     }
                     ?>
-                    <input type="text" name="fecha_nacimiento" class="form-control" value="<?php echo $fecha_mostrar; ?>" required placeholder="Ej: 25/05/1996" maxlength="10" oninput="this.value = this.value.replace(/[^0-9\/]/g, '')">
+                    <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="<?php echo $fecha_mostrar; ?>" required placeholder="DD/MM/AAAA" maxlength="10">
+                    <script>
+                    document.getElementById('fecha_nacimiento').addEventListener('input', function(e) {
+                        let value = e.target.value.replace(/\D/g, ''); // Solo números
+                        let formatted = '';
+                        
+                        if (value.length > 0) {
+                            formatted = value.substring(0, 2); // DD
+                        }
+                        if (value.length >= 3) {
+                            formatted += '/' + value.substring(2, 4); // MM
+                        }
+                        if (value.length >= 5) {
+                            formatted += '/' + value.substring(4, 8); // AAAA
+                        }
+                        
+                        e.target.value = formatted;
+                    });
+                    </script>
                 </div>
                 <div class="form-group">
                     <label class="form-label required">NIVEL EDUCATIVO</label>
