@@ -676,74 +676,43 @@ if (!$estudiante_seleccionado) {
             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
             VIDA ESPIRITUAL Y CRISTIANA
         </div>
-        <div class="toggle-group">
-            <label class="toggle-btn">
-                <input type="checkbox" name="bautismo" <?php echo ($sacramentos['bautismo'] ?? 0) ? 'checked' : ''; ?>>
-                <div class="toggle-info" style="text-align: right;">
-                    <div class="toggle-title">BAUTISMO</div>
-                    <div class="toggle-sub">Sacramento de iniciación</div>
-                </div>
-            </label>
-            <label class="toggle-btn">
-                <input type="checkbox" name="primera_comunion" <?php echo ($sacramentos['primera_comunion'] ?? 0) ? 'checked' : ''; ?>>
-                <div class="toggle-info" style="text-align: right;">
-                    <div class="toggle-title">PRIMERA COMUNIÓN</div>
-                    <div class="toggle-sub">Cuerpo y sangre de Cristo</div>
-                </div>
-            </label>
-            <label class="toggle-btn">
-                <input type="checkbox" name="confirmacion" <?php echo ($sacramentos['confirmacion'] ?? 0) ? 'checked' : ''; ?>>
-                <div class="toggle-info" style="text-align: right;">
-                    <div class="toggle-title">CONFIRMACIÓN</div>
-                    <div class="toggle-sub">Reafirmación de fe</div>
-                </div>
-            </label>
-        </div>
-        
-        <!-- SACRAMENTOS DE LOS PADRES -->
-        <div class="form-group full-width" style="margin-top: 2.5rem;">
-            <label class="form-label" style="font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 1.5rem;">SACRAMENTOS DE LOS PADRES</label>
+        <div class="form-group full-width" style="background: white; padding: 1.5rem; border-radius: 12px; border: 1px solid #e5e7eb; margin-bottom: 2rem;">
+            <label class="form-label" style="font-weight: 700; color: #7c3aed; margin-bottom: 1rem; display: block;">SACRAMENTOS DE LAS ESTUDIANTES</label>
             
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
-                <!-- Bautismo Papá -->
-                <div style="background: #f0f9ff; padding: 1.25rem; border-radius: 12px; border: 2px solid #e0f2fe;">
-                    <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; font-weight: 600; color: #0284c7; font-size: 0.95rem;">
-                        <input type="checkbox" name="bautismo_papa" value="1" <?php echo !empty($sacramentos['bautismo_papa']) ? 'checked' : ''; ?> style="width: 18px; height: 18px;">
-                        <span>👨 BAUTISMO PAPÁ</span>
-                    </label>
-                </div>
-                
-                <!-- Bautismo Mamá -->
-                <div style="background: #fffbeb; padding: 1.25rem; border-radius: 12px; border: 2px solid #fef3c7;">
-                    <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; font-weight: 600; color: #f59e0b; font-size: 0.95rem;">
-                        <input type="checkbox" name="bautismo_mama" value="1" <?php echo !empty($sacramentos['bautismo_mama']) ? 'checked' : ''; ?> style="width: 18px; height: 18px;">
-                        <span>👩 BAUTISMO MAMÁ</span>
-                    </label>
-                </div>
-                
-                <!-- Matrimonio Religioso -->
-                <div style="background: #f5f3ff; padding: 1.25rem; border-radius: 12px; border: 2px solid #e9d5ff;">
-                    <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer; font-weight: 600; color: #9333ea; font-size: 0.95rem;">
-                        <input type="checkbox" name="matrimonio_religioso" value="1" <?php echo !empty($sacramentos['matrimonio_religioso']) ? 'checked' : ''; ?> style="width: 18px; height: 18px;">
-                        <span>💒 MATRIMONIO RELIGIOSO</span>
-                    </label>
-                </div>
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    <input type="checkbox" name="bautismo" value="1" <?php echo ($sacramentos['bautismo'] ?? 0) ? 'checked' : ''; ?> style="width: 18px; height: 18px;">
+                    <span>Bautismo</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    <input type="checkbox" name="primera_comunion" value="1" <?php echo ($sacramentos['primera_comunion'] ?? 0) ? 'checked' : ''; ?> style="width: 18px; height: 18px;">
+                    <span>Primera Comunión</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    <input type="checkbox" name="confirmacion" value="1" <?php echo ($sacramentos['confirmacion'] ?? 0) ? 'checked' : ''; ?> style="width: 18px; height: 18px;">
+                    <span>Confirmación</span>
+                </label>
+            </div>
+
+            <div class="form-group full-width">
+                <label class="form-label">OBSERVACIONES (OPCIONAL)</label>
+                <input type="text" name="observaciones_sacramentos" class="form-control" value="<?php echo $sacramentos['observaciones_sacramentos'] ?? ''; ?>" placeholder="Escriba alguna observación si es necesario...">
             </div>
         </div>
         
-        <!-- SITUACIÓN CONYUGAL -->
-        <div class="form-group full-width">
-            <label class="form-label">SITUACIÓN CONYUGAL DE LOS PADRES</label>
-            <select name="estado_matrimonio_padres" class="form-control">
-                <option value="NINGUNO">-- SELECCIONE --</option>
-                <option value="RELIGIOSO_CIVIL" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'RELIGIOSO_CIVIL' ? 'selected' : ''; ?>>CASADOS (CIVIL Y RELIGIOSO)</option>
-                <option value="SOLO_CIVIL" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'SOLO_CIVIL' ? 'selected' : ''; ?>>SOLO CIVIL</option>
-                <option value="SOLO_RELIGIOSO" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'SOLO_RELIGIOSO' ? 'selected' : ''; ?>>SOLO RELIGIOSO</option>
-                <option value="CONVIVIENTES" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'CONVIVIENTES' ? 'selected' : ''; ?>>CONVIVIENTES</option>
-                <option value="SEPARADOS" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'SEPARADOS' ? 'selected' : ''; ?>>SEPARADOS</option>
-                <option value="SOLTERO" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'SOLTERO' ? 'selected' : ''; ?>>SOLTERO(A)</option>
-            </select>
-        </div>
+            <!-- SACRAMENTO DE LOS PADRES -->
+            <div class="form-group full-width">
+                <label class="form-label" style="font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem;">SACRAMENTO DE LOS PADRES</label>
+                <select name="estado_matrimonio_padres" class="form-control">
+                    <option value="NINGUNO">-- SELECCIONE --</option>
+                    <option value="RELIGIOSO_Y_CIVIL" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'RELIGIOSO_Y_CIVIL' ? 'selected' : ''; ?>>RELIGIOSO Y CIVIL</option>
+                    <option value="SOLO_CIVIL" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'SOLO_CIVIL' ? 'selected' : ''; ?>>SOLO CIVIL</option>
+                    <option value="SOLO_RELIGIOSO" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'SOLO_RELIGIOSO' ? 'selected' : ''; ?>>SOLO RELIGIOSO</option>
+                    <option value="NINGUNO_ESTADO" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'NINGUNO_ESTADO' ? 'selected' : ''; ?>>NINGUNO</option>
+                    <option value="VIUDA_O" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'VIUDA_O' ? 'selected' : ''; ?>>VIUDA(O)</option>
+                    <option value="CONVIVIENTES" <?php echo ($sacramentos['estado_matrimonio_padres'] ?? '') == 'CONVIVIENTES' ? 'selected' : ''; ?>>CONVIVIENTES</option>
+                </select>
+            </div>
 
     <?php elseif ($step == 'documentos'): ?>
         <div class="section-title orange">
