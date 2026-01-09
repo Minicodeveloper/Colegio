@@ -542,7 +542,7 @@ if (!$estudiante_seleccionado) {
             <input type="hidden" name="representantes[<?php echo $padre['id']; ?>][id]" value="<?php echo $padre['id']; ?>">
             <div class="form-group">
                 <label class="form-label required">DNI</label>
-                <input type="text" name="representantes[<?php echo $padre['id']; ?>][dni]" class="form-control" value="<?php echo $padre['dni']; ?>" required>
+                <input type="text" name="representantes[<?php echo $padre['id']; ?>][dni]" class="form-control" value="<?php echo $padre['dni']; ?>" required maxlength="8" pattern="[0-9]{8}" inputmode="numeric">
             </div>
             <div class="form-group full-width">
                 <label class="form-label required">APELLIDOS Y NOMBRES</label>
@@ -579,17 +579,17 @@ if (!$estudiante_seleccionado) {
             <input type="hidden" name="representantes[<?php echo $madre['id']; ?>][id]" value="<?php echo $madre['id']; ?>">
             <div class="form-group">
                 <label class="form-label required">DNI</label>
-                <input type="text" name="representantes[<?php echo $madre['id']; ?>][dni]" class="form-control" value="<?php echo $madre['dni']; ?>" required>
+                <input type="text" name="representantes[<?php echo $madre['id']; ?>][dni]" class="form-control" value="<?php echo $madre['dni']; ?>" maxlength="8" pattern="[0-9]{8}" inputmode="numeric">
             </div>
             <div class="form-group full-width">
                 <label class="form-label required">APELLIDOS Y NOMBRES</label>
-                <input type="text" name="representantes[<?php echo $madre['id']; ?>][paterno]" class="form-control" value="<?php echo $madre['apellido_paterno'] . ' ' . $madre['apellido_materno'] . ', ' . $madre['nombres']; ?>" required>
+                <input type="text" name="representantes[<?php echo $madre['id']; ?>][paterno]" class="form-control" value="<?php echo $madre['apellido_paterno'] . ' ' . $madre['apellido_materno'] . ', ' . $madre['nombres']; ?>">
                 <input type="hidden" name="representantes[<?php echo $madre['id']; ?>][materno]" value="">
                 <input type="hidden" name="representantes[<?php echo $madre['id']; ?>][nombres]" value="">
             </div>
             <div class="form-group">
                 <label class="form-label required">CELULAR</label>
-                <input type="text" name="representantes[<?php echo $madre['id']; ?>][celular]" class="form-control" value="<?php echo $madre['celular']; ?>" required>
+                <input type="text" name="representantes[<?php echo $madre['id']; ?>][celular]" class="form-control" value="<?php echo $madre['celular']; ?>">
             </div>
             <div class="form-group">
                 <label class="form-label">WHATSAPP</label>
@@ -597,7 +597,7 @@ if (!$estudiante_seleccionado) {
             </div>
             <div class="form-group full-width">
                 <label class="form-label required">DOMICILIO ACTUAL</label>
-                <input type="text" name="representantes[<?php echo $madre['id']; ?>][direccion]" class="form-control" value="<?php echo $madre['direccion']; ?>" required>
+                <input type="text" name="representantes[<?php echo $madre['id']; ?>][direccion]" class="form-control" value="<?php echo $madre['direccion']; ?>">
             </div>
         </div>
         <hr style="margin: 2rem 0; border: 0; border-top: 1px solid #eee;">
@@ -616,7 +616,7 @@ if (!$estudiante_seleccionado) {
             <input type="hidden" name="representantes[<?php echo $ap['id']; ?>][id]" value="<?php echo $ap['id']; ?>">
             <div class="form-group">
                 <label class="form-label required">DNI</label>
-                <input type="text" name="representantes[<?php echo $ap['id']; ?>][dni]" class="form-control" value="<?php echo $ap['dni']; ?>" required>
+                <input type="text" name="representantes[<?php echo $ap['id']; ?>][dni]" class="form-control" value="<?php echo $ap['dni']; ?>" required maxlength="8" pattern="[0-9]{8}" inputmode="numeric">
             </div>
 <<<<<<< Updated upstream
             <div class="form-group full-width">

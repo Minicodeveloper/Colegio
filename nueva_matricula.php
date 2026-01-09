@@ -385,7 +385,7 @@ $data = $_SESSION['nueva_matricula'];
                 <div class="form-grid">
                     <div class="form-group">
                         <label class="form-label">DNI</label>
-                        <input type="text" name="padre_dni" class="form-control" value="<?php echo $data['familia']['padre_dni'] ?? ''; ?>" maxlength="8" pattern="[0-9]{8}">
+                        <input type="text" name="padre_dni" class="form-control" value="<?php echo $data['familia']['padre_dni'] ?? ''; ?>" maxlength="8" pattern="[0-9]{8}" inputmode="numeric">
                     </div>
 <<<<<<< Updated upstream
                     <div class="form-group">
@@ -426,7 +426,7 @@ $data = $_SESSION['nueva_matricula'];
                 <div class="form-grid">
                     <div class="form-group">
                         <label class="form-label required">DNI</label>
-                        <input type="text" name="madre_dni" class="form-control" value="<?php echo $data['familia']['madre_dni'] ?? ''; ?>" required maxlength="8" pattern="[0-9]{8}">
+                        <input type="text" name="madre_dni" class="form-control" value="<?php echo $data['familia']['madre_dni'] ?? ''; ?>" maxlength="8" pattern="[0-9]{8}" inputmode="numeric">
                     </div>
 <<<<<<< Updated upstream
                     <div class="form-group">
@@ -434,22 +434,22 @@ $data = $_SESSION['nueva_matricula'];
                     <div class="form-group full-width">
 >>>>>>> Stashed changes
                         <label class="form-label required">APELLIDOS Y NOMBRES</label>
-                        <input type="text" name="madre_nombres" class="form-control" value="<?php echo $data['familia']['madre_nombres'] ?? ''; ?>" required>
+                        <input type="text" name="madre_nombres" class="form-control" value="<?php echo $data['familia']['madre_nombres'] ?? ''; ?>">
                     </div>
                     <div class="form-group">
                         <label class="form-label required">CELULAR</label>
-                        <input type="tel" name="madre_celular" class="form-control" value="<?php echo $data['familia']['madre_celular'] ?? ''; ?>" required>
+                        <input type="tel" name="madre_celular" class="form-control" value="<?php echo $data['familia']['madre_celular'] ?? ''; ?>">
                     </div>
                     <div class="form-group">
                         <label class="form-label required">WHATSAPP</label>
-                        <input type="tel" name="madre_whatsapp" class="form-control" value="<?php echo $data['familia']['madre_whatsapp'] ?? ''; ?>" required>
+                        <input type="tel" name="madre_whatsapp" class="form-control" value="<?php echo $data['familia']['madre_whatsapp'] ?? ''; ?>">
                     </div>
                     <div class="form-group full-width">
                         <label class="form-label required">DOMICILIO ACTUAL</label>
 <<<<<<< Updated upstream
                         <input type="text" name="madre_direccion" class="form-control" value="<?php echo $data['familia']['madre_direccion'] ?? ''; ?>" required>
 =======
-                        <input type="text" name="madre_domicilio" class="form-control" value="<?php echo $data['familia']['madre_domicilio'] ?? ''; ?>" required>
+                        <input type="text" name="madre_domicilio" class="form-control" value="<?php echo $data['familia']['madre_domicilio'] ?? ''; ?>">
 >>>>>>> Stashed changes
                     </div>
                 </div>
@@ -467,7 +467,7 @@ $data = $_SESSION['nueva_matricula'];
                 <div class="form-grid">
                     <div class="form-group">
                         <label class="form-label">DNI</label>
-                        <input type="text" name="apoderado_dni" class="form-control" value="<?php echo $data['familia']['apoderado_dni'] ?? ''; ?>" maxlength="8" pattern="[0-9]{8}">
+                        <input type="text" name="apoderado_dni" class="form-control" value="<?php echo $data['familia']['apoderado_dni'] ?? ''; ?>" maxlength="8" pattern="[0-9]{8}" inputmode="numeric">
                     </div>
                     <div class="form-group">
 <<<<<<< Updated upstream
