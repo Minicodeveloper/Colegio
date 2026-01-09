@@ -300,8 +300,8 @@ $data = $_SESSION['nueva_matricula'];
                     <label class="form-label required">ESQUEMA DE VACUNAS</label>
                     <select name="esquema_vacunas" class="form-control" required>
                         <option value="">-- SELECCIONE --</option>
-                        <option value="COMPLETO" <?php echo ($data['salud']['esquema_vacunas'] ?? '') == 'COMPLETO' ? 'selected' : ''; ?>>COMPLETO</option>
-                        <option value="INCOMPLETO" <?php echo ($data['salud']['esquema_vacunas'] ?? '') == 'INCOMPLETO' ? 'selected' : ''; ?>>INCOMPLETO</option>
+                        <option value="COMPLETO" <?php echo ($data['salud']['esquema_vacunas'] ?? '') == 'COMPLETO' ? 'selected' : ''; ?>>Sí, tiene todas sus vacunas</option>
+                        <option value="INCOMPLETO" <?php echo ($data['salud']['esquema_vacunas'] ?? '') == 'INCOMPLETO' ? 'selected' : ''; ?>>No, no tiene ninguna vacuna</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -388,7 +388,7 @@ $data = $_SESSION['nueva_matricula'];
                         <input type="text" name="padre_dni" class="form-control" value="<?php echo $data['familia']['padre_dni'] ?? ''; ?>" maxlength="8" pattern="[0-9]{8}">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">NOMBRES COMPLETOS</label>
+                        <label class="form-label">APELLIDOS Y NOMBRES</label>
                         <input type="text" name="padre_nombres" class="form-control" value="<?php echo $data['familia']['padre_nombres'] ?? ''; ?>">
                     </div>
                     <div class="form-group">
@@ -398,6 +398,10 @@ $data = $_SESSION['nueva_matricula'];
                     <div class="form-group">
                         <label class="form-label">WHATSAPP</label>
                         <input type="tel" name="padre_whatsapp" class="form-control" value="<?php echo $data['familia']['padre_whatsapp'] ?? ''; ?>">
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">DOMICILIO ACTUAL</label>
+                        <input type="text" name="padre_direccion" class="form-control" value="<?php echo $data['familia']['padre_direccion'] ?? ''; ?>">
                     </div>
                 </div>
             </div>
@@ -417,7 +421,7 @@ $data = $_SESSION['nueva_matricula'];
                         <input type="text" name="madre_dni" class="form-control" value="<?php echo $data['familia']['madre_dni'] ?? ''; ?>" required maxlength="8" pattern="[0-9]{8}">
                     </div>
                     <div class="form-group">
-                        <label class="form-label required">NOMBRES COMPLETOS</label>
+                        <label class="form-label required">APELLIDOS Y NOMBRES</label>
                         <input type="text" name="madre_nombres" class="form-control" value="<?php echo $data['familia']['madre_nombres'] ?? ''; ?>" required>
                     </div>
                     <div class="form-group">
@@ -427,6 +431,10 @@ $data = $_SESSION['nueva_matricula'];
                     <div class="form-group">
                         <label class="form-label required">WHATSAPP</label>
                         <input type="tel" name="madre_whatsapp" class="form-control" value="<?php echo $data['familia']['madre_whatsapp'] ?? ''; ?>" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label required">DOMICILIO ACTUAL</label>
+                        <input type="text" name="madre_direccion" class="form-control" value="<?php echo $data['familia']['madre_direccion'] ?? ''; ?>" required>
                     </div>
                 </div>
             </div>
@@ -446,8 +454,12 @@ $data = $_SESSION['nueva_matricula'];
                         <input type="text" name="apoderado_dni" class="form-control" value="<?php echo $data['familia']['apoderado_dni'] ?? ''; ?>" maxlength="8" pattern="[0-9]{8}">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">NOMBRES COMPLETOS</label>
+                        <label class="form-label">APELLIDOS Y NOMBRES</label>
                         <input type="text" name="apoderado_nombres" class="form-control" value="<?php echo $data['familia']['apoderado_nombres'] ?? ''; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">PARENTESCO</label>
+                        <input type="text" name="apoderado_parentesco" class="form-control" value="<?php echo $data['familia']['apoderado_parentesco'] ?? ''; ?>" placeholder="Ej: Tío, Abuelo, etc.">
                     </div>
                     <div class="form-group">
                         <label class="form-label">CELULAR</label>
@@ -456,6 +468,10 @@ $data = $_SESSION['nueva_matricula'];
                     <div class="form-group">
                         <label class="form-label">WHATSAPP</label>
                         <input type="tel" name="apoderado_whatsapp" class="form-control" value="<?php echo $data['familia']['apoderado_whatsapp'] ?? ''; ?>">
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">DOMICILIO ACTUAL</label>
+                        <input type="text" name="apoderado_direccion" class="form-control" value="<?php echo $data['familia']['apoderado_direccion'] ?? ''; ?>">
                     </div>
                 </div>
             </div>

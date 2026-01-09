@@ -458,8 +458,8 @@ if (!$estudiante_seleccionado) {
                 <label class="form-label">ESQUEMA VACUNAS</label>
                 <select name="tiene_carnet_vacunacion" class="form-control">
                     <option value="0">-- SELECCIONE --</option>
-                    <option value="1" <?php echo ($salud['tiene_carnet_vacunacion'] ?? 0) ? 'selected' : ''; ?>>COMPLETO</option>
-                    <option value="0" <?php echo !($salud['tiene_carnet_vacunacion'] ?? 0) ? 'selected' : ''; ?>>INCOMPLETO</option>
+                    <option value="1" <?php echo ($salud['tiene_carnet_vacunacion'] ?? 0) ? 'selected' : ''; ?>>Sí, tiene todas sus vacunas</option>
+                    <option value="0" <?php echo !($salud['tiene_carnet_vacunacion'] ?? 0) ? 'selected' : ''; ?>>No, no tiene ninguna vacuna</option>
                 </select>
             </div>
             <div class="form-group">
@@ -544,17 +544,11 @@ if (!$estudiante_seleccionado) {
                 <label class="form-label required">DNI</label>
                 <input type="text" name="representantes[<?php echo $padre['id']; ?>][dni]" class="form-control" value="<?php echo $padre['dni']; ?>" required>
             </div>
-            <div class="form-group">
-                <label class="form-label required">APELLIDO PATERNO</label>
-                <input type="text" name="representantes[<?php echo $padre['id']; ?>][paterno]" class="form-control" value="<?php echo $padre['apellido_paterno']; ?>" required>
-            </div>
-            <div class="form-group">
-                <label class="form-label required">APELLIDO MATERNO</label>
-                <input type="text" name="representantes[<?php echo $padre['id']; ?>][materno]" class="form-control" value="<?php echo $padre['apellido_materno']; ?>" required>
-            </div>
             <div class="form-group full-width">
-                <label class="form-label required">NOMBRES</label>
-                <input type="text" name="representantes[<?php echo $padre['id']; ?>][nombres]" class="form-control" value="<?php echo $padre['nombres']; ?>" required>
+                <label class="form-label required">APELLIDOS Y NOMBRES</label>
+                <input type="text" name="representantes[<?php echo $padre['id']; ?>][paterno]" class="form-control" value="<?php echo $padre['apellido_paterno'] . ' ' . $padre['apellido_materno'] . ', ' . $padre['nombres']; ?>" required>
+                <input type="hidden" name="representantes[<?php echo $padre['id']; ?>][materno]" value="">
+                <input type="hidden" name="representantes[<?php echo $padre['id']; ?>][nombres]" value="">
             </div>
             <div class="form-group">
                 <label class="form-label required">CELULAR</label>
@@ -587,17 +581,11 @@ if (!$estudiante_seleccionado) {
                 <label class="form-label required">DNI</label>
                 <input type="text" name="representantes[<?php echo $madre['id']; ?>][dni]" class="form-control" value="<?php echo $madre['dni']; ?>" required>
             </div>
-            <div class="form-group">
-                <label class="form-label required">APELLIDO PATERNO</label>
-                <input type="text" name="representantes[<?php echo $madre['id']; ?>][paterno]" class="form-control" value="<?php echo $madre['apellido_paterno']; ?>" required>
-            </div>
-            <div class="form-group">
-                <label class="form-label required">APELLIDO MATERNO</label>
-                <input type="text" name="representantes[<?php echo $madre['id']; ?>][materno]" class="form-control" value="<?php echo $madre['apellido_materno']; ?>" required>
-            </div>
             <div class="form-group full-width">
-                <label class="form-label required">NOMBRES</label>
-                <input type="text" name="representantes[<?php echo $madre['id']; ?>][nombres]" class="form-control" value="<?php echo $madre['nombres']; ?>" required>
+                <label class="form-label required">APELLIDOS Y NOMBRES</label>
+                <input type="text" name="representantes[<?php echo $madre['id']; ?>][paterno]" class="form-control" value="<?php echo $madre['apellido_paterno'] . ' ' . $madre['apellido_materno'] . ', ' . $madre['nombres']; ?>" required>
+                <input type="hidden" name="representantes[<?php echo $madre['id']; ?>][materno]" value="">
+                <input type="hidden" name="representantes[<?php echo $madre['id']; ?>][nombres]" value="">
             </div>
             <div class="form-group">
                 <label class="form-label required">CELULAR</label>
@@ -630,21 +618,22 @@ if (!$estudiante_seleccionado) {
                 <label class="form-label required">DNI</label>
                 <input type="text" name="representantes[<?php echo $ap['id']; ?>][dni]" class="form-control" value="<?php echo $ap['dni']; ?>" required>
             </div>
-            <div class="form-group">
-                <label class="form-label required">APELLIDOS</label>
-                <input type="text" name="representantes[<?php echo $ap['id']; ?>][paterno]" class="form-control" value="<?php echo $ap['apellido_paterno'] . ' ' . $ap['apellido_materno']; ?>" required>
+            <div class="form-group full-width">
+                <label class="form-label required">APELLIDOS Y NOMBRES</label>
+                <input type="text" name="representantes[<?php echo $ap['id']; ?>][paterno]" class="form-control" value="<?php echo $ap['apellido_paterno'] . ' ' . $ap['apellido_materno'] . ', ' . $ap['nombres']; ?>" required>
                 <input type="hidden" name="representantes[<?php echo $ap['id']; ?>][materno]" value="">
+                <input type="hidden" name="representantes[<?php echo $ap['id']; ?>][nombres]" value="">
             </div>
-             <div class="form-group full-width">
-                <label class="form-label required">NOMBRES</label>
-                <input type="text" name="representantes[<?php echo $ap['id']; ?>][nombres]" class="form-control" value="<?php echo $ap['nombres']; ?>" required>
+            <div class="form-group">
+                <label class="form-label required">PARENTESCO</label>
+                <input type="text" name="representantes[<?php echo $ap['id']; ?>][parentesco]" class="form-control" value="<?php echo $ap['parentesco'] ?? ''; ?>" required placeholder="Ej: Tío, Abuelo, etc.">
             </div>
             <div class="form-group">
                 <label class="form-label required">CELULAR</label>
                 <input type="text" name="representantes[<?php echo $ap['id']; ?>][celular]" class="form-control" value="<?php echo $ap['celular']; ?>" required>
             </div>
             <div class="form-group full-width">
-                <label class="form-label required">DOMICILIO</label>
+                <label class="form-label required">DOMICILIO ACTUAL</label>
                 <input type="text" name="representantes[<?php echo $ap['id']; ?>][direccion]" class="form-control" value="<?php echo $ap['direccion']; ?>" required>
             </div>
         </div>
