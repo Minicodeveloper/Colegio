@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['asignar_seccion'])) {
 // Filtros
 $filtro_nivel = isset($_GET['nivel']) ? $_GET['nivel'] : '';
 $filtro_grado = isset($_GET['grado']) ? $_GET['grado'] : '';
-$filtro_tipo = isset($_GET['tipo']) ? $_GET['tipo'] : 'nuevas'; // 'nuevas' o 'ratificadas'
+$filtro_tipo = isset($_GET['tipo']) ? $_GET['tipo'] : 'ratificadas'; // 'nuevas' o 'ratificadas'
 
 // Construir consulta
 $where = [];
