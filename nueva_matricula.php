@@ -54,14 +54,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Guardar en base de datos
             $est = $_SESSION['nueva_matricula']['estudiante'];
             
-            // Convertir fecha de DD/MM/AAAA a YYYY-MM-DD
-            $fecha_nacimiento = $est['fecha_nacimiento'];
-            if (strpos($fecha_nacimiento, '/') !== false) {
-                $partes = explode('/', $fecha_nacimiento);
-                if (count($partes) == 3) {
-                    $fecha_nacimiento = $partes[2] . '-' . $partes[1] . '-' . $partes[0];
+            // Combinar día, mes y año en formato YYYY-MM-DD
+            if (isset($est['dia_nacimiento']) && isset($est['mes_nacimiento']) && isset($est['anio_nacimiento'])) {
+                $fecha_nacimiento = $est['anio_nacimiento'] . '-' . $est['mes_nacimiento'] . '-' . $est['dia_nacimiento'];
+            } else {
+                // Fallback para compatibilidad con formato antiguo
+                $fecha_nacimiento = $est['fecha_nacimiento'] ?? '';
+                if (strpos($fecha_nacimiento, '/') !== false) {
+                    $partes = explode('/', $fecha_nacimiento);
+                    if (count($partes) == 3) {
+                        $fecha_nacimiento = $partes[2] . '-' . $partes[1] . '-' . $partes[0];
+                    }
                 }
             }
+
 
             $estudiante_id = insert(
                 "INSERT INTO estudiantes (dni, nombres, apellido_paterno, apellido_materno, fecha_nacimiento, direccion, nivel, grado, seccion, created_by, created_at) 
@@ -176,8 +182,43 @@ $data = $_SESSION['nueva_matricula'];
                     <input type="text" name="nombres" class="form-control" value="<?php echo $data['estudiante']['nombres'] ?? ''; ?>" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label required">FECHA DE NACIMIENTO (DD/MM/AAAA)</label>
-                    <input type="text" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" value="<?php echo isset($data['estudiante']['fecha_nacimiento']) ? date('d/m/Y', strtotime($data['estudiante']['fecha_nacimiento'])) : ''; ?>" required placeholder="DD/MM/AAAA" pattern="\d{1,2}/\d{1,2}/\d{4}" maxlength="10">
+                    <label class="form-label required">DÍA DE NACIMIENTO</label>
+                    <select name="dia_nacimiento" class="form-control" required>
+                        <option value="">-- DÍA --</option>
+                        <?php 
+                        $dia_actual = isset($data['estudiante']['fecha_nacimiento']) ? date('d', strtotime($data['estudiante']['fecha_nacimiento'])) : '';
+                        for($d = 1; $d <= 31; $d++): 
+                            $dia_val = str_pad($d, 2, '0', STR_PAD_LEFT);
+                        ?>
+                            <option value="<?php echo $dia_val; ?>" <?php echo $dia_actual == $dia_val ? 'selected' : ''; ?>><?php echo $d; ?></option>
+                        <?php endfor; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">MES DE NACIMIENTO</label>
+                    <select name="mes_nacimiento" class="form-control" required>
+                        <option value="">-- MES --</option>
+                        <?php 
+                        $mes_actual = isset($data['estudiante']['fecha_nacimiento']) ? date('m', strtotime($data['estudiante']['fecha_nacimiento'])) : '';
+                        $meses = ['01' => 'Enero', '02' => 'Febrero', '03' => 'Marzo', '04' => 'Abril', '05' => 'Mayo', '06' => 'Junio', 
+                                  '07' => 'Julio', '08' => 'Agosto', '09' => 'Septiembre', '10' => 'Octubre', '11' => 'Noviembre', '12' => 'Diciembre'];
+                        foreach($meses as $num => $nombre): 
+                        ?>
+                            <option value="<?php echo $num; ?>" <?php echo $mes_actual == $num ? 'selected' : ''; ?>><?php echo $nombre; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">AÑO DE NACIMIENTO</label>
+                    <select name="anio_nacimiento" class="form-control" required>
+                        <option value="">-- AÑO --</option>
+                        <?php 
+                        $anio_actual = isset($data['estudiante']['fecha_nacimiento']) ? date('Y', strtotime($data['estudiante']['fecha_nacimiento'])) : '';
+                        for($a = date('Y'); $a >= date('Y') - 20; $a--): 
+                        ?>
+                            <option value="<?php echo $a; ?>" <?php echo $anio_actual == $a ? 'selected' : ''; ?>><?php echo $a; ?></option>
+                        <?php endfor; ?>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="form-label required">NIVEL EDUCATIVO</label>
@@ -641,27 +682,6 @@ $data = $_SESSION['nueva_matricula'];
     </form>
 </div>
 
-<script>
-// Auto-formatear fecha de nacimiento con barras
-const fechaInput = document.getElementById('fecha_nacimiento');
-if (fechaInput) {
-    fechaInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, ''); // Eliminar todo excepto números
-        let formattedValue = '';
-        
-        if (value.length > 0) {
-            formattedValue = value.substring(0, 2); // DD
-        }
-        if (value.length >= 3) {
-            formattedValue += '/' + value.substring(2, 4); // MM
-        }
-        if (value.length >= 5) {
-            formattedValue += '/' + value.substring(4, 8); // AAAA
-        }
-        
-        e.target.value = formattedValue;
-    });
-}
 
 // Validación de formulario
 if(document.getElementById('form-step')) {
