@@ -591,15 +591,9 @@ if (!$estudiante_seleccionado) {
                 <label class="form-label required">DNI</label>
                 <input type="text" name="representantes[<?php echo $ap['id']; ?>][dni]" class="form-control" value="<?php echo $ap['dni']; ?>" required maxlength="8" pattern="[0-9]{8}" inputmode="numeric">
             </div>
-<<<<<<< Updated upstream
             <div class="form-group full-width">
                 <label class="form-label required">APELLIDOS Y NOMBRES</label>
                 <input type="text" name="representantes[<?php echo $ap['id']; ?>][paterno]" class="form-control" value="<?php echo $ap['apellido_paterno'] . ' ' . $ap['apellido_materno'] . ', ' . $ap['nombres']; ?>" required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ,]+" title="Solo letras, espacios y comas">
-=======
-            <div class="form-group">
-                <label class="form-label required">APELLIDOS Y NOMBRES</label>
-                <input type="text" name="representantes[<?php echo $ap['id']; ?>][paterno]" class="form-control" value="<?php echo $ap['apellido_paterno'] . ' ' . $ap['apellido_materno']; ?>" required>
->>>>>>> Stashed changes
                 <input type="hidden" name="representantes[<?php echo $ap['id']; ?>][materno]" value="">
                 <input type="hidden" name="representantes[<?php echo $ap['id']; ?>][nombres]" value="">
             </div>
