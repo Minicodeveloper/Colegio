@@ -20,8 +20,23 @@ $representante = fetchOne(
     "SELECT r.* FROM representantes r 
      INNER JOIN estudiante_representante er ON r.id = er.representante_id 
      WHERE er.estudiante_id = ? AND er.es_principal = 1",
+);
+
+// Obtener todos los representantes
+$representantes = fetchAll(
+    "SELECT r.*, er.es_principal FROM representantes r 
+     INNER JOIN estudiante_representante er ON r.id = er.representante_id 
+     WHERE er.estudiante_id = ?
+     ORDER BY er.es_principal DESC, r.parentesco",
     [$estudiante['id']]
 );
+
+// Obtener sacramentos
+$sacramentos = fetchOne("SELECT * FROM sacramentos WHERE estudiante_id = ?", [$estudiante['id']]);
+
+// Obtener contacto de emergencia
+$emergencia = fetchOne("SELECT * FROM contactos_emergencia WHERE estudiante_id = ?", [$estudiante['id']]);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -205,7 +220,7 @@ $representante = fetchOne(
         <table>
             <tr>
                 <th>Seguro de Salud</th>
-                <td><?php echo $salud['seguro_salud']; ?></td>
+                <td><?php echo $salud['seguro_salud'] ?: 'No especificado'; ?></td>
             </tr>
             <tr>
                 <th>Grupo Sanguíneo</th>
@@ -215,24 +230,115 @@ $representante = fetchOne(
                 <th>Peso / Talla</th>
                 <td><?php echo $salud['peso_kg']; ?> kg / <?php echo $salud['talla_cm']; ?> cm</td>
             </tr>
+            <tr>
+                <th>Esquema de Vacunas</th>
+                <td><?php echo $salud['tiene_carnet_vacunacion'] ? 'COMPLETO' : 'INCOMPLETO'; ?></td>
+            </tr>
+            <tr>
+                <th>Dosis COVID-19</th>
+                <td><?php echo $salud['dosis_covid'] ?? '0'; ?> dosis</td>
+            </tr>
+            <?php if (!empty($salud['tiene_discapacidad'])): ?>
+            <tr>
+                <th>Discapacidad</th>
+                <td style="color: #dc2626; font-weight: 700;">SÍ - <?php echo $salud['detalle_discapacidad']; ?></td>
+            </tr>
+            <?php endif; ?>
+            <?php if (!empty($salud['detalle_alergias'])): ?>
+            <tr>
+                <th>Alergias</th>
+                <td style="color: #ea580c; font-weight: 700;"><?php echo $salud['detalle_alergias']; ?></td>
+            </tr>
+            <?php endif; ?>
         </table>
         <?php endif; ?>
 
-        <?php if ($representante): ?>
-        <div class="section-title">👨‍👩‍👧 DATOS DEL REPRESENTANTE</div>
-        <table>
+        <?php if (!empty($representantes)): ?>
+        <div class="section-title">👨‍👩‍👧 DATOS DE LA FAMILIA</div>
+        <?php foreach ($representantes as $rep): ?>
+        <table style="margin-bottom: 10px;">
             <tr>
-                <th>Nombre Completo</th>
-                <td><?php echo $representante['nombres'] . ' ' . $representante['apellido_paterno'] . ' ' . $representante['apellido_materno']; ?></td>
+                <th colspan="2" style="background: #eef2ff; color: #4f46e5; font-size: 12px;">
+                    <?php echo strtoupper($rep['parentesco']); ?>
+                    <?php if ($rep['es_principal']): ?>
+                        <span class="badge" style="background: #fef3c7; color: #92400e; margin-left: 10px;">REPRESENTANTE LEGAL</span>
+                    <?php endif; ?>
+                </th>
             </tr>
             <tr>
-                <th>Parentesco</th>
-                <td><?php echo $representante['parentesco']; ?></td>
+                <th>Nombre Completo</th>
+                <td><?php echo $rep['nombres'] . ' ' . $rep['apellido_paterno'] . ' ' . $rep['apellido_materno']; ?></td>
+            </tr>
+            <tr>
+                <th>DNI</th>
+                <td><?php echo $rep['dni']; ?></td>
             </tr>
             <tr>
                 <th>Celular / WhatsApp</th>
-                <td><?php echo $representante['celular']; ?> / <?php echo $representante['whatsapp']; ?></td>
+                <td><?php echo $rep['celular']; ?> / <?php echo $rep['whatsapp']; ?></td>
             </tr>
+        </table>
+        <?php endforeach; ?>
+        <?php endif; ?>
+
+        <?php if ($emergencia): ?>
+        <div class="section-title" style="border-left-color: #dc2626; background: #fef2f2;">🚨 CONTACTO DE EMERGENCIA</div>
+        <table>
+            <tr>
+                <th>Nombre Completo</th>
+                <td><?php echo $emergencia['nombre_completo']; ?></td>
+            </tr>
+            <tr>
+                <th>Parentesco</th>
+                <td><?php echo $emergencia['parentesco']; ?></td>
+            </tr>
+            <tr>
+                <th>Celular</th>
+                <td style="color: #dc2626; font-weight: 700; font-size: 15px;"><?php echo $emergencia['celular']; ?></td>
+            </tr>
+        </table>
+        <?php endif; ?>
+
+        <?php if ($sacramentos): ?>
+        <div class="section-title" style="border-left-color: #7c3aed; background: #faf5ff;">✝️ VIDA SACRAMENTAL</div>
+        <table>
+            <tr>
+                <th>Sacramentos de la Niña</th>
+                <td>
+                    <?php 
+                    $sacs = [];
+                    if (!empty($sacramentos['bautismo'])) $sacs[] = 'Bautismo';
+                    if (!empty($sacramentos['primera_comunion'])) $sacs[] = 'Primera Comunión';
+                    if (!empty($sacramentos['confirmacion'])) $sacs[] = 'Confirmación';
+                    echo !empty($sacs) ? implode(', ', $sacs) : 'Ninguno';
+                    ?>
+                </td>
+            </tr>
+            <?php if (!empty($sacramentos['bautismo_papa']) || !empty($sacramentos['bautismo_mama'])): ?>
+            <tr>
+                <th>Bautismo de los Padres</th>
+                <td>
+                    <?php 
+                    $bauts = [];
+                    if (!empty($sacramentos['bautismo_papa'])) $bauts[] = 'Papá';
+                    if (!empty($sacramentos['bautismo_mama'])) $bauts[] = 'Mamá';
+                    echo implode(' y ', $bauts);
+                    ?>
+                </td>
+            </tr>
+            <?php endif; ?>
+            <?php if (!empty($sacramentos['matrimonio_religioso'])): ?>
+            <tr>
+                <th>Matrimonio Religioso</th>
+                <td style="color: #7c3aed; font-weight: 700;">✓ SÍ</td>
+            </tr>
+            <?php endif; ?>
+            <?php if (!empty($sacramentos['estado_matrimonio_padres']) && $sacramentos['estado_matrimonio_padres'] != 'NINGUNO'): ?>
+            <tr>
+                <th>Situación Conyugal</th>
+                <td><?php echo str_replace('_', ' ', $sacramentos['estado_matrimonio_padres']); ?></td>
+            </tr>
+            <?php endif; ?>
         </table>
         <?php endif; ?>
 
