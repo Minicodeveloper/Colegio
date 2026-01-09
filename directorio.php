@@ -14,7 +14,7 @@ $where = [];
 $params = [];
 
 if ($search) {
-    $where[] = "(e.dni LIKE ? OR CONCAT(e.nombres, ' ', e.apellido_paterno, ' ', e.apellido_materno) LIKE ?)";
+    $where[] = "(e.dni LIKE ? OR CONCAT(e.apellido_paterno, ' ', e.apellido_materno, ' ', e.nombres) LIKE ?)";
     $params[] = "%$search%";
     $params[] = "%$search%";
 }
@@ -33,10 +33,10 @@ if ($seccion_filter) {
 
 $whereClause = $where ? 'WHERE ' . implode(' AND ', $where) : '';
 $estudiantes = fetchAll(
-    "SELECT e.*, CONCAT(e.nombres, ' ', e.apellido_paterno, ' ', e.apellido_materno) as nombre_completo 
+    "SELECT e.*, CONCAT(e.apellido_paterno, ' ', e.apellido_materno, ', ', e.nombres) as nombre_completo 
      FROM estudiantes e 
      $whereClause
-     ORDER BY e.grado, e.seccion, e.apellido_paterno",
+     ORDER BY e.apellido_paterno, e.apellido_materno, e.nombres ASC",
     $params
 );
 ?>
