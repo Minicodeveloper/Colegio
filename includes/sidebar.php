@@ -28,6 +28,11 @@
             Nueva Matrícula
         </a>
 
+        <a href="asignar_seccion_nuevas.php" class="nav-item <?php echo $current_page == 'asignar_seccion_nuevas.php' ? 'active' : ''; ?>">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            Asignar Sección Nuevas
+        </a>
+        
         <a href="ratificacion.php" class="nav-item <?php echo ($current_page == 'ratificacion.php' || $current_page == 'success.php') ? 'active' : ''; ?>">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="M9 15l2 2 4-4"></path></svg>
             Ratificación
@@ -38,7 +43,7 @@
             Directorio 2026
         </a>
 
-        <a href="traslado.php" class="nav-item <?php echo $current_page == 'traslado.php' ? 'active' : ''; ?>">
+        <a href="traslado_seccion.php" class="nav-item <?php echo $current_page == 'traslado_seccion.php' ? 'active' : ''; ?>">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
             Traslado Sección
         </a>
