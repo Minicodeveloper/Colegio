@@ -12,11 +12,11 @@ if (isset($_GET['ajax_search'])) {
     }
     
     $estudiantes = fetchAll(
-        "SELECT dni, CONCAT(nombres, ' ', apellido_paterno, ' ', apellido_materno) as nombre_completo, grado 
+        "SELECT dni, CONCAT(apellido_paterno, ' ', apellido_materno, ', ', nombres) as nombre_completo, grado 
          FROM estudiantes 
-         WHERE dni LIKE ? OR apellido_paterno LIKE ? OR apellido_materno LIKE ? OR nombres LIKE ?
+         WHERE dni LIKE ? OR apellido_paterno LIKE ? OR apellido_materno LIKE ?
          LIMIT 10",
-        ["%$search%", "%$search%", "%$search%", "%$search%"]
+        ["%$search%", "%$search%", "%$search%"]
     );
     header('Content-Type: application/json');
     echo json_encode($estudiantes);
@@ -34,7 +34,7 @@ $selected_dni = isset($_GET['dni']) ? $_GET['dni'] : '';
 $estudiante_seleccionado = null;
 if ($selected_dni) {
     $estudiante_seleccionado = fetchOne(
-        "SELECT e.*, CONCAT(e.nombres, ' ', e.apellido_paterno, ' ', e.apellido_materno) as nombre_completo 
+        "SELECT e.*, CONCAT(e.apellido_paterno, ' ', e.apellido_materno, ', ', e.nombres) as nombre_completo 
          FROM estudiantes e WHERE e.dni = ?", 
         [$selected_dni]
     );
@@ -250,12 +250,12 @@ if (!$estudiante_seleccionado) {
 
     <?php if ($search): 
         $estudiantes = fetchAll(
-            "SELECT e.*, CONCAT(e.nombres, ' ', e.apellido_paterno, ' ', e.apellido_materno) as nombre_completo 
+            "SELECT e.*, CONCAT(e.apellido_paterno, ' ', e.apellido_materno, ', ', e.nombres) as nombre_completo 
              FROM estudiantes e 
-             WHERE e.dni LIKE ? OR CONCAT(e.nombres, ' ', e.apellido_paterno, ' ', e.apellido_materno) LIKE ?
+             WHERE e.dni LIKE ? OR e.apellido_paterno LIKE ? OR e.apellido_materno LIKE ?
              ORDER BY e.apellido_paterno, e.apellido_materno, e.nombres
              LIMIT 20",
-            ["%$search%", "%$search%"]
+            ["%$search%", "%$search%", "%$search%"]
         );
     ?>
         <div style="margin-top: 2rem;">

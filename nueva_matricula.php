@@ -737,7 +737,7 @@ $data = $_SESSION['nueva_matricula'];
     </form>
 </div>
 
-
+<script>
 // Validación de formulario
 if(document.getElementById('form-step')) {
     document.getElementById('form-step').addEventListener('submit', function(e) {
