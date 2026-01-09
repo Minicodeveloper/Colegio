@@ -546,17 +546,17 @@ if (!$estudiante_seleccionado) {
             </div>
             <div class="form-group full-width">
                 <label class="form-label required">APELLIDOS Y NOMBRES</label>
-                <input type="text" name="representantes[<?php echo $padre['id']; ?>][paterno]" class="form-control" value="<?php echo $padre['apellido_paterno'] . ' ' . $padre['apellido_materno'] . ', ' . $padre['nombres']; ?>" required>
+                <input type="text" name="representantes[<?php echo $padre['id']; ?>][paterno]" class="form-control" value="<?php echo $padre['apellido_paterno'] . ' ' . $padre['apellido_materno'] . ', ' . $padre['nombres']; ?>" required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ,]+" title="Solo letras, espacios y comas">
                 <input type="hidden" name="representantes[<?php echo $padre['id']; ?>][materno]" value="">
                 <input type="hidden" name="representantes[<?php echo $padre['id']; ?>][nombres]" value="">
             </div>
             <div class="form-group">
                 <label class="form-label required">CELULAR</label>
-                <input type="text" name="representantes[<?php echo $padre['id']; ?>][celular]" class="form-control" value="<?php echo $padre['celular']; ?>" required>
+                <input type="text" name="representantes[<?php echo $padre['id']; ?>][celular]" class="form-control" value="<?php echo $padre['celular']; ?>" required maxlength="9" pattern="[0-9]{9}" inputmode="numeric" title="9 dígitos numéricos">
             </div>
             <div class="form-group">
                 <label class="form-label">WHATSAPP</label>
-                <input type="text" name="representantes[<?php echo $padre['id']; ?>][whatsapp]" class="form-control" value="<?php echo $padre['whatsapp']; ?>">
+                <input type="text" name="representantes[<?php echo $padre['id']; ?>][whatsapp]" class="form-control" value="<?php echo $padre['whatsapp']; ?>" maxlength="9" pattern="[0-9]{9}" inputmode="numeric" title="9 dígitos numéricos">
             </div>
             <div class="form-group full-width">
                 <label class="form-label required">DOMICILIO ACTUAL</label>
@@ -583,17 +583,17 @@ if (!$estudiante_seleccionado) {
             </div>
             <div class="form-group full-width">
                 <label class="form-label required">APELLIDOS Y NOMBRES</label>
-                <input type="text" name="representantes[<?php echo $madre['id']; ?>][paterno]" class="form-control" value="<?php echo $madre['apellido_paterno'] . ' ' . $madre['apellido_materno'] . ', ' . $madre['nombres']; ?>">
+                <input type="text" name="representantes[<?php echo $madre['id']; ?>][paterno]" class="form-control" value="<?php echo $madre['apellido_paterno'] . ' ' . $madre['apellido_materno'] . ', ' . $madre['nombres']; ?>" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ,]+" title="Solo letras, espacios y comas">
                 <input type="hidden" name="representantes[<?php echo $madre['id']; ?>][materno]" value="">
                 <input type="hidden" name="representantes[<?php echo $madre['id']; ?>][nombres]" value="">
             </div>
             <div class="form-group">
                 <label class="form-label required">CELULAR</label>
-                <input type="text" name="representantes[<?php echo $madre['id']; ?>][celular]" class="form-control" value="<?php echo $madre['celular']; ?>">
+                <input type="text" name="representantes[<?php echo $madre['id']; ?>][celular]" class="form-control" value="<?php echo $madre['celular']; ?>" maxlength="9" pattern="[0-9]{9}" inputmode="numeric" title="9 dígitos numéricos">
             </div>
             <div class="form-group">
                 <label class="form-label">WHATSAPP</label>
-                <input type="text" name="representantes[<?php echo $madre['id']; ?>][whatsapp]" class="form-control" value="<?php echo $madre['whatsapp']; ?>">
+                <input type="text" name="representantes[<?php echo $madre['id']; ?>][whatsapp]" class="form-control" value="<?php echo $madre['whatsapp']; ?>" maxlength="9" pattern="[0-9]{9}" inputmode="numeric" title="9 dígitos numéricos">
             </div>
             <div class="form-group full-width">
                 <label class="form-label required">DOMICILIO ACTUAL</label>
@@ -621,7 +621,7 @@ if (!$estudiante_seleccionado) {
 <<<<<<< Updated upstream
             <div class="form-group full-width">
                 <label class="form-label required">APELLIDOS Y NOMBRES</label>
-                <input type="text" name="representantes[<?php echo $ap['id']; ?>][paterno]" class="form-control" value="<?php echo $ap['apellido_paterno'] . ' ' . $ap['apellido_materno'] . ', ' . $ap['nombres']; ?>" required>
+                <input type="text" name="representantes[<?php echo $ap['id']; ?>][paterno]" class="form-control" value="<?php echo $ap['apellido_paterno'] . ' ' . $ap['apellido_materno'] . ', ' . $ap['nombres']; ?>" required pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ,]+" title="Solo letras, espacios y comas">
 =======
             <div class="form-group">
                 <label class="form-label required">APELLIDOS Y NOMBRES</label>
@@ -636,7 +636,7 @@ if (!$estudiante_seleccionado) {
             </div>
             <div class="form-group">
                 <label class="form-label required">CELULAR</label>
-                <input type="text" name="representantes[<?php echo $ap['id']; ?>][celular]" class="form-control" value="<?php echo $ap['celular']; ?>" required>
+                <input type="text" name="representantes[<?php echo $ap['id']; ?>][celular]" class="form-control" value="<?php echo $ap['celular']; ?>" required maxlength="9" pattern="[0-9]{9}" inputmode="numeric" title="9 dígitos numéricos">
             </div>
             <div class="form-group full-width">
                 <label class="form-label required">DOMICILIO ACTUAL</label>

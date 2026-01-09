@@ -393,15 +393,15 @@ $data = $_SESSION['nueva_matricula'];
                     <div class="form-group full-width">
 >>>>>>> Stashed changes
                         <label class="form-label">APELLIDOS Y NOMBRES</label>
-                        <input type="text" name="padre_nombres" class="form-control" value="<?php echo $data['familia']['padre_nombres'] ?? ''; ?>">
+                        <input type="text" name="padre_nombres" class="form-control" value="<?php echo $data['familia']['padre_nombres'] ?? ''; ?>" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ,]+" title="Solo letras, espacios y comas">
                     </div>
                     <div class="form-group">
                         <label class="form-label">CELULAR</label>
-                        <input type="tel" name="padre_celular" class="form-control" value="<?php echo $data['familia']['padre_celular'] ?? ''; ?>">
+                        <input type="tel" name="padre_celular" class="form-control" value="<?php echo $data['familia']['padre_celular'] ?? ''; ?>" maxlength="9" pattern="[0-9]{9}" inputmode="numeric" title="9 dígitos numéricos">
                     </div>
                     <div class="form-group">
                         <label class="form-label">WHATSAPP</label>
-                        <input type="tel" name="padre_whatsapp" class="form-control" value="<?php echo $data['familia']['padre_whatsapp'] ?? ''; ?>">
+                        <input type="tel" name="padre_whatsapp" class="form-control" value="<?php echo $data['familia']['padre_whatsapp'] ?? ''; ?>" maxlength="9" pattern="[0-9]{9}" inputmode="numeric" title="9 dígitos numéricos">
                     </div>
                     <div class="form-group full-width">
                         <label class="form-label">DOMICILIO ACTUAL</label>
@@ -434,15 +434,15 @@ $data = $_SESSION['nueva_matricula'];
                     <div class="form-group full-width">
 >>>>>>> Stashed changes
                         <label class="form-label required">APELLIDOS Y NOMBRES</label>
-                        <input type="text" name="madre_nombres" class="form-control" value="<?php echo $data['familia']['madre_nombres'] ?? ''; ?>">
+                        <input type="text" name="madre_nombres" class="form-control" value="<?php echo $data['familia']['madre_nombres'] ?? ''; ?>" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ,]+" title="Solo letras, espacios y comas">
                     </div>
                     <div class="form-group">
                         <label class="form-label required">CELULAR</label>
-                        <input type="tel" name="madre_celular" class="form-control" value="<?php echo $data['familia']['madre_celular'] ?? ''; ?>">
+                        <input type="tel" name="madre_celular" class="form-control" value="<?php echo $data['familia']['madre_celular'] ?? ''; ?>" maxlength="9" pattern="[0-9]{9}" inputmode="numeric" title="9 dígitos numéricos">
                     </div>
                     <div class="form-group">
                         <label class="form-label required">WHATSAPP</label>
-                        <input type="tel" name="madre_whatsapp" class="form-control" value="<?php echo $data['familia']['madre_whatsapp'] ?? ''; ?>">
+                        <input type="tel" name="madre_whatsapp" class="form-control" value="<?php echo $data['familia']['madre_whatsapp'] ?? ''; ?>" maxlength="9" pattern="[0-9]{9}" inputmode="numeric" title="9 dígitos numéricos">
                     </div>
                     <div class="form-group full-width">
                         <label class="form-label required">DOMICILIO ACTUAL</label>
@@ -478,7 +478,7 @@ $data = $_SESSION['nueva_matricula'];
                     <div class="form-group full-width">
 >>>>>>> Stashed changes
                         <label class="form-label">APELLIDOS Y NOMBRES</label>
-                        <input type="text" name="apoderado_nombres" class="form-control" value="<?php echo $data['familia']['apoderado_nombres'] ?? ''; ?>">
+                        <input type="text" name="apoderado_nombres" class="form-control" value="<?php echo $data['familia']['apoderado_nombres'] ?? ''; ?>" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ,]+" title="Solo letras, espacios y comas">
                     </div>
                     <div class="form-group">
                         <label class="form-label">PARENTESCO</label>
@@ -486,11 +486,11 @@ $data = $_SESSION['nueva_matricula'];
                     </div>
                     <div class="form-group">
                         <label class="form-label">CELULAR</label>
-                        <input type="tel" name="apoderado_celular" class="form-control" value="<?php echo $data['familia']['apoderado_celular'] ?? ''; ?>">
+                        <input type="tel" name="apoderado_celular" class="form-control" value="<?php echo $data['familia']['apoderado_celular'] ?? ''; ?>" maxlength="9" pattern="[0-9]{9}" inputmode="numeric" title="9 dígitos numéricos">
                     </div>
                     <div class="form-group">
                         <label class="form-label">WHATSAPP</label>
-                        <input type="tel" name="apoderado_whatsapp" class="form-control" value="<?php echo $data['familia']['apoderado_whatsapp'] ?? ''; ?>">
+                        <input type="tel" name="apoderado_whatsapp" class="form-control" value="<?php echo $data['familia']['apoderado_whatsapp'] ?? ''; ?>" maxlength="9" pattern="[0-9]{9}" inputmode="numeric" title="9 dígitos numéricos">
                     </div>
                     <div class="form-group full-width">
                         <label class="form-label">DOMICILIO ACTUAL</label>
