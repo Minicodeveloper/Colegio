@@ -9,6 +9,28 @@ $nivel_filter = isset($_GET['nivel']) ? $_GET['nivel'] : '';
 $grado_filter = isset($_GET['grado']) ? $_GET['grado'] : '';
 $seccion_filter = isset($_GET['seccion']) ? $_GET['seccion'] : '';
 
+// Lógica de Eliminación
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'delete' && !empty($_POST['id'])) {
+    $id_borrar = $_POST['id'];
+    try {
+        // Borrar dependencias (tablas relacionadas)
+        query("DELETE FROM salud_estudiantes WHERE estudiante_id = ?", [$id_borrar]);
+        query("DELETE FROM sacramentos WHERE estudiante_id = ?", [$id_borrar]);
+        query("DELETE FROM contactos_emergencia WHERE estudiante_id = ?", [$id_borrar]);
+        query("DELETE FROM estudiante_representante WHERE estudiante_id = ?", [$id_borrar]);
+        query("DELETE FROM documentos_fisicos WHERE estudiante_id = ?", [$id_borrar]); // Si existe, por si acaso
+        // Borrar estudiante
+        query("DELETE FROM estudiantes WHERE id = ?", [$id_borrar]);
+        
+        // Mensaje de éxito (podemos usar parametro GET)
+        header("Location: directorio.php?msg=deleted");
+        exit;
+    } catch (Exception $e) {
+        $error = "Error al eliminar: " . $e->getMessage();
+    }
+}
+
+
 // Construir query
 $where = [];
 $params = [];
@@ -192,6 +214,7 @@ $estudiantes = fetchAll(
                         <div style="display: flex; gap: 0.5rem; justify-content: center;">
                              <a href="ficha.php?dni=<?php echo $est['dni']; ?>" target="_blank" class="action-btn" title="Ver ficha"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></a>
                              <a href="ratificacion.php?dni=<?php echo $est['dni']; ?>" class="action-btn" title="Editar"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></a>
+                             <a href="#" onclick="confirmDelete(<?php echo $est['id']; ?>)" class="action-btn" title="Eliminar" style="color: #ef4444;"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></a>
                         </div>
                     </td>
                 </tr>
@@ -200,6 +223,20 @@ $estudiantes = fetchAll(
         </table>
     </div>
 </div>
+
+<!-- Formulario oculto eliminar -->
+<form id="deleteForm" method="POST" style="display:none;">
+    <input type="hidden" name="action" value="delete">
+    <input type="hidden" name="id" id="deleteId">
+</form>
+<script>
+function confirmDelete(id) {
+    if(confirm('¿Está seguro de que desea eliminar a esta estudiante y todos sus datos relacionados? Esta acción no se puede deshacer.')) {
+        document.getElementById('deleteId').value = id;
+        document.getElementById('deleteForm').submit();
+    }
+}
+</script>
 
 </div> <!-- End Content Wrapper -->
 </main>

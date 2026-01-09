@@ -58,10 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $fecha_nacimiento = $partes[2] . '-' . $partes[1] . '-' . $partes[0];
             }
         }
-                $partes = explode('/', $fecha_nacimiento);
-                if (count($partes) == 3) {
-                    $fecha_nacimiento = $partes[2] . '-' . $partes[1] . '-' . $partes[0];
-                }
+
 
 
         
