@@ -20,6 +20,7 @@ $representante = fetchOne(
     "SELECT r.* FROM representantes r 
      INNER JOIN estudiante_representante er ON r.id = er.representante_id 
      WHERE er.estudiante_id = ? AND er.es_principal = 1",
+    [$estudiante['id']]
 );
 
 // Obtener todos los representantes
