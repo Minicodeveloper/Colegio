@@ -127,7 +127,7 @@ $estudiantes = fetchAll(
             <tbody>
                 <?php foreach ($estudiantes as $est): 
                     // Obtener representantes para cada estudiante
-                    $reps = fetchAll("SELECT r.*, er.parentesco as rel_parentesco, er.es_principal 
+                    $reps = fetchAll("SELECT r.*, r.parentesco as rel_parentesco, er.es_principal 
                                      FROM representantes r 
                                      INNER JOIN estudiante_representante er ON r.id = er.representante_id 
                                      WHERE er.estudiante_id = ?", [$est['id']]);
@@ -137,7 +137,7 @@ $estudiantes = fetchAll(
                     $apoderado = null;
 
                     foreach ($reps as $r) {
-                        $p = strtoupper($r['rel_parentesco']); // Usar el parentesco de la relación
+                        $p = strtoupper($r['rel_parentesco']); // Usar el parentesco de la tabla representantes
                         if ($p == 'PADRE') $papa = $r;
                         if ($p == 'MADRE') $mama = $r;
                         if ($r['es_principal'] == 1) $apoderado = $r;
