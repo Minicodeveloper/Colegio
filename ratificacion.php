@@ -334,15 +334,9 @@ if (!$estudiante_seleccionado) {
             </div>
             <div class="form-group full-width">
                 <label class="form-label required">APELLIDOS Y NOMBRES</label>
-                <input type="text" name="apellido_paterno" class="form-control" value="<?php echo $estudiante_seleccionado['apellido_paterno']; ?>" required placeholder="Apellido Paterno">
-            </div>
-            <div class="form-group">
-                <label class="form-label required">APELLIDO MATERNO</label>
-                <input type="text" name="apellido_materno" class="form-control" value="<?php echo $estudiante_seleccionado['apellido_materno']; ?>" required>
-            </div>
-            <div class="form-group">
-                <label class="form-label required">NOMBRES</label>
-                <input type="text" name="nombres" class="form-control" value="<?php echo $estudiante_seleccionado['nombres']; ?>" required>
+                <input type="text" name="apellido_paterno" class="form-control" value="<?php echo $estudiante_seleccionado['apellido_paterno']; ?>" required placeholder="Ingrese apellidos y nombres completos">
+                <input type="hidden" name="apellido_materno" value="">
+                <input type="hidden" name="nombres" value="">
             </div>
             <div class="form-group">
                 <label class="form-label required">DÍA DE NACIMIENTO</label>
