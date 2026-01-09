@@ -387,7 +387,11 @@ $data = $_SESSION['nueva_matricula'];
                         <label class="form-label">DNI</label>
                         <input type="text" name="padre_dni" class="form-control" value="<?php echo $data['familia']['padre_dni'] ?? ''; ?>" maxlength="8" pattern="[0-9]{8}">
                     </div>
+<<<<<<< Updated upstream
                     <div class="form-group">
+=======
+                    <div class="form-group full-width">
+>>>>>>> Stashed changes
                         <label class="form-label">APELLIDOS Y NOMBRES</label>
                         <input type="text" name="padre_nombres" class="form-control" value="<?php echo $data['familia']['padre_nombres'] ?? ''; ?>">
                     </div>
@@ -401,7 +405,11 @@ $data = $_SESSION['nueva_matricula'];
                     </div>
                     <div class="form-group full-width">
                         <label class="form-label">DOMICILIO ACTUAL</label>
+<<<<<<< Updated upstream
                         <input type="text" name="padre_direccion" class="form-control" value="<?php echo $data['familia']['padre_direccion'] ?? ''; ?>">
+=======
+                        <input type="text" name="padre_domicilio" class="form-control" value="<?php echo $data['familia']['padre_domicilio'] ?? ''; ?>">
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
@@ -420,7 +428,11 @@ $data = $_SESSION['nueva_matricula'];
                         <label class="form-label required">DNI</label>
                         <input type="text" name="madre_dni" class="form-control" value="<?php echo $data['familia']['madre_dni'] ?? ''; ?>" required maxlength="8" pattern="[0-9]{8}">
                     </div>
+<<<<<<< Updated upstream
                     <div class="form-group">
+=======
+                    <div class="form-group full-width">
+>>>>>>> Stashed changes
                         <label class="form-label required">APELLIDOS Y NOMBRES</label>
                         <input type="text" name="madre_nombres" class="form-control" value="<?php echo $data['familia']['madre_nombres'] ?? ''; ?>" required>
                     </div>
@@ -434,7 +446,11 @@ $data = $_SESSION['nueva_matricula'];
                     </div>
                     <div class="form-group full-width">
                         <label class="form-label required">DOMICILIO ACTUAL</label>
+<<<<<<< Updated upstream
                         <input type="text" name="madre_direccion" class="form-control" value="<?php echo $data['familia']['madre_direccion'] ?? ''; ?>" required>
+=======
+                        <input type="text" name="madre_domicilio" class="form-control" value="<?php echo $data['familia']['madre_domicilio'] ?? ''; ?>" required>
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
@@ -454,6 +470,13 @@ $data = $_SESSION['nueva_matricula'];
                         <input type="text" name="apoderado_dni" class="form-control" value="<?php echo $data['familia']['apoderado_dni'] ?? ''; ?>" maxlength="8" pattern="[0-9]{8}">
                     </div>
                     <div class="form-group">
+<<<<<<< Updated upstream
+=======
+                        <label class="form-label">PARENTESCO</label>
+                        <input type="text" name="apoderado_parentesco" class="form-control" value="<?php echo $data['familia']['apoderado_parentesco'] ?? ''; ?>" placeholder="Ej: Tío, Abuelo">
+                    </div>
+                    <div class="form-group full-width">
+>>>>>>> Stashed changes
                         <label class="form-label">APELLIDOS Y NOMBRES</label>
                         <input type="text" name="apoderado_nombres" class="form-control" value="<?php echo $data['familia']['apoderado_nombres'] ?? ''; ?>">
                     </div>
@@ -471,7 +494,11 @@ $data = $_SESSION['nueva_matricula'];
                     </div>
                     <div class="form-group full-width">
                         <label class="form-label">DOMICILIO ACTUAL</label>
+<<<<<<< Updated upstream
                         <input type="text" name="apoderado_direccion" class="form-control" value="<?php echo $data['familia']['apoderado_direccion'] ?? ''; ?>">
+=======
+                        <input type="text" name="apoderado_domicilio" class="form-control" value="<?php echo $data['familia']['apoderado_domicilio'] ?? ''; ?>">
+>>>>>>> Stashed changes
                     </div>
                 </div>
             </div>
