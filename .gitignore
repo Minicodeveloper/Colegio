@@ -1,0 +1,10 @@
+# Archivos sensibles
+config/database.php
+.env
+
+# Dependencias
+/vendor
+/node_modules
+
+# Logs
+*.log
