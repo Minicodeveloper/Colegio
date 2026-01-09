@@ -195,6 +195,18 @@ $data = $_SESSION['nueva_matricula'];
                     </select>
                     <input type="hidden" id="grado_actual" value="<?php echo $data['estudiante']['grado'] ?? ''; ?>">
                 </div>
+                
+                <div class="form-group">
+                    <label class="form-label required">SECCIÓN</label>
+                    <select name="seccion" class="form-control" required>
+                        <option value="">-- SELECCIONE --</option>
+                        <option value="A" <?php echo ($data['estudiante']['seccion'] ?? '') == 'A' ? 'selected' : ''; ?>>A</option>
+                        <option value="B" <?php echo ($data['estudiante']['seccion'] ?? '') == 'B' ? 'selected' : ''; ?>>B</option>
+                        <option value="C" <?php echo ($data['estudiante']['seccion'] ?? '') == 'C' ? 'selected' : ''; ?>>C</option>
+                        <option value="D" <?php echo ($data['estudiante']['seccion'] ?? '') == 'D' ? 'selected' : ''; ?>>D</option>
+                        <option value="E" <?php echo ($data['estudiante']['seccion'] ?? '') == 'E' ? 'selected' : ''; ?>>E</option>
+                    </select>
+                </div>
 
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
@@ -305,6 +317,20 @@ $data = $_SESSION['nueva_matricula'];
                 <div class="form-group full-width" id="detalle_alergias" style="display: <?php echo !empty($data['salud']['tiene_alergias']) ? 'block' : 'none'; ?>;">
                     <label class="form-label">DETALLE LA ALERGIA</label>
                     <input type="text" name="detalle_alergias" class="form-control" value="<?php echo $data['salud']['detalle_alergias'] ?? ''; ?>">
+                </div>
+                
+                <div class="form-group full-width">
+                    <label class="form-label">¿PRESENTA ALGUNA DISCAPACIDAD?</label>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="checkbox" name="tiene_discapacidad" value="1" <?php echo !empty($data['salud']['tiene_discapacidad']) ? 'checked' : ''; ?> onclick="document.getElementById('detalle_discapacidad').style.display = this.checked ? 'block' : 'none'">
+                            <span>Sí, presenta discapacidad</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group full-width" id="detalle_discapacidad" style="display: <?php echo !empty($data['salud']['tiene_discapacidad']) ? 'block' : 'none'; ?>;">
+                    <label class="form-label">DETALLE LA DISCAPACIDAD</label>
+                    <textarea name="detalle_discapacidad" class="form-control" rows="2"><?php echo $data['salud']['detalle_discapacidad'] ?? ''; ?></textarea>
                 </div>
             </div>
 
@@ -421,6 +447,35 @@ $data = $_SESSION['nueva_matricula'];
                     <div class="form-group">
                         <label class="form-label required">WHATSAPP ACTIVO</label>
                         <input type="tel" name="emergencia_whatsapp" class="form-control" value="<?php echo $data['familia']['emergencia_whatsapp'] ?? ''; ?>" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HERMANAS EN EL COLEGIO -->
+            <div class="form-group full-width" style="margin-top: 2rem; padding: 1.5rem; background: #fef3c7; border-radius: 12px; border: 2px solid #fbbf24;">
+                <label class="form-label" style="font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 1rem;">
+                    👭 ¿TIENE HERMANAS ESTUDIANDO EN EL COLEGIO?
+                </label>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" name="tiene_hermanas" value="1" <?php echo !empty($data['familia']['tiene_hermanas']) ? 'checked' : ''; ?> onclick="document.getElementById('detalle_hermanas').style.display = this.checked ? 'block' : 'none'">
+                        <span style="font-weight: 600; color: #92400e;">Sí, tiene hermanas en el colegio</span>
+                    </label>
+                </div>
+                <div id="detalle_hermanas" style="display: <?php echo !empty($data['familia']['tiene_hermanas']) ? 'block' : 'none'; ?>; margin-top: 1rem;">
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label class="form-label">NOMBRES DE LAS HERMANAS</label>
+                            <input type="text" name="hermanas_nombres" class="form-control" value="<?php echo $data['familia']['hermanas_nombres'] ?? ''; ?>" placeholder="Ej: María García, Ana García">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">GRADOS</label>
+                            <input type="text" name="hermanas_grados" class="form-control" value="<?php echo $data['familia']['hermanas_grados'] ?? ''; ?>" placeholder="Ej: 3ro, 5to">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">SECCIONES</label>
+                            <input type="text" name="hermanas_secciones" class="form-control" value="<?php echo $data['familia']['hermanas_secciones'] ?? ''; ?>" placeholder="Ej: A, B">
+                        </div>
                     </div>
                 </div>
             </div>
